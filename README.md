@@ -40,3 +40,34 @@ Navigate to the project directory and run the Spring Boot application using Grad
 gradle bootRun
 ```
 
+## Testing Endpoints
+
+### Access Endpoints
+
+Open Postman or your web browser and access the following URL: [http://localhost:8080/shippingmethod/](http://localhost:8080/shippingmethod/). From here, you can test various endpoints, including `/shippingmethod` to retrieve all shipping methods or `/shippingmethod/{id}` to retrieve a specific shipping method by its ID.
+
+### CRUD Operations
+
+Use Postman to perform CRUD operations. Choose the desired HTTP method (GET, POST, PUT, DELETE) to interact with endpoints. For instance, you can add new shipping methods, update existing ones, or delete them as well.
+
+## Useful Data
+
+The backend initializes the database with pre-defined values. You can access this data either through the command line interface of your database management system or by referring to the `data.sql` file located in `src/main/resources`. Additionally, two user accounts with different roles and authorities are available for testing purposes:
+
+**Admin**
+
+- Username: admin
+- Password: 123
+
+**User**
+
+- Username: Guest
+- Password: user1
+
+Ensure to use these credentials for testing authentication and authorization correctly.
+
+## Conclusion
+
+Follow these instructions to successfully set up and run the Shipping Method backend on your local machine.
+```
+
