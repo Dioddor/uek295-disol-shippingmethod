@@ -25,7 +25,6 @@ public class ShippingmethodService {
     }
 
     public Shippingmethod addShippingmethod(Shippingmethod shippingmethod) {
-        shippingmethod.setShipping_id(null);
         return repository.save(shippingmethod);
     }
 

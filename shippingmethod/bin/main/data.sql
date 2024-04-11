@@ -1,10 +1,9 @@
 INSERT INTO shippingmethod ("name", "duration", "price_in_$")
-VALUES 
-    ('ohispeed', '30 min', 50.99),
-    ('express', '3 hours', 30.50),
-    ('standard', '1 day', 15.99);
-
-
+VALUES (
+        'ohispeed',
+        '5 hours',
+        20.20
+    );
 INSERT INTO authorities ("authority_id", "authority_name")
 VALUES(1, 'READ'),
     (2, 'CREATE'),
@@ -22,5 +21,5 @@ VALUES(1, 1),
     (2, 1);
 
 INSERT INTO users ("password", "name", "user_role")
-VALUES ('123', 'admin', 1),
-    ('user1', 'Guest', 2);
+VALUES ('123', 'admin', 1);
+ 

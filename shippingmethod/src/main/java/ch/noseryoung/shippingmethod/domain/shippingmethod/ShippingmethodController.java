@@ -29,15 +29,15 @@ public class ShippingmethodController {
         return ResponseEntity.ok().body(shippingmethodService.getShippingmethods());
     }
 
-    @Operation(description = "Receive a specific address by id that is stored in the db. Access to this Endpoint requires READ authority", summary = "get address by a specific id that is stored in the db")
+    @Operation(description = "Receive a specific shippment by id that is stored in the db. Access to this Endpoint requires READ authority", summary = "get address by a specific id that is stored in the db")
     @PreAuthorize("hasAuthority('READ')")
-    @GetMapping("/{addressId}")
-    public ResponseEntity<Shippingmethod> getShippingById(@PathVariable("addressId") Integer shipping_id)
+    @GetMapping("/{shipping_id}")
+    public ResponseEntity<Shippingmethod> getShippingById(@PathVariable("shipping_id") int shipping_id)
             throws InstanceNotFoundException, ShippmentNotFoundException {
         return ResponseEntity.ok().body(shippingmethodService.getShippingById(shipping_id));
     }
 
-    @Operation(description = "add address that will be stored in the db, requires CREATE Authority", summary = "add address that will be stored in the db")
+    @Operation(description = "add shipping that will be stored in the db, requires CREATE Authority", summary = "add address that will be stored in the db")
     @PreAuthorize("hasAuthority('CREATE')")
     @PostMapping("/")
     public ResponseEntity<Shippingmethod> addShippingmethod(@Valid @RequestBody Shippingmethod shippingmethod)
@@ -45,18 +45,18 @@ public class ShippingmethodController {
         return ResponseEntity.ok().body(shippingmethodService.addShippingmethod(shippingmethod));
     }
 
-    @Operation(description = "Delete address that is stored in the db by its id. Access to this Endpoint requires DELETE authority", summary = "delete address by id that is stored in the db")
+    @Operation(description = "Delete shipping that is stored in the db by its id. Access to this Endpoint requires DELETE authority", summary = "delete shippment by id that is stored in the db")
     @PreAuthorize("hasAuthority('DELETE')")
-    @DeleteMapping("/{addressId}")
-    public String deleteShippingmethod(@PathVariable("addressId") int index) {
+    @DeleteMapping("/{shipping_id}")
+    public String deleteShippingmethod(@PathVariable("shipping_id") int index) {
         shippingmethodService.deleteShippingmethod(index);
         return "You Deleted " + index;
     }
 
-    @Operation(description = "Update existing Address in the db with new values. Access to this Endpoint requires UPDATE authority", summary = "update existing address that is stored in the db")
+    @Operation(description = "Update existing shippment in the db with new values. Access to this Endpoint requires UPDATE authority", summary = "update existing shippment that is stored in the db")
     @PreAuthorize("hasAuthority('UPDATE')")
-    @PutMapping("/{addressId}")
-    public ResponseEntity<Shippingmethod> updateShippingmethod(@Valid @PathVariable("shippingId") int shipping_id,
+    @PutMapping("/{shipping_id}")
+    public ResponseEntity<Shippingmethod> updateShippingmethod(@Valid @PathVariable("shipping_id") int shipping_id,
             @Valid @RequestBody Shippingmethod shippingmethod)
             throws AccessDeniedException, InstanceNotFoundException, ShippmentNotFoundException {
         shippingmethodService.updateShippingmethod(shipping_id, shippingmethod);
@@ -71,7 +71,7 @@ public class ShippingmethodController {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<String> handleMethodArgumentNotValidException(MethodArgumentNotValidException element) {
         return ResponseEntity.badRequest().body(element.getBindingResult().getFieldError().getField() + " is invalid: "
-                + element.getBindingResult().getFieldError().getDefaultMessage());
+                + element.getBindingResult().getFieldError().getDefaultMessage());  
     }
 
     public class ShippmentNotFoundException extends Exception {
@@ -85,7 +85,7 @@ public class ShippingmethodController {
     }
 
     @ExceptionHandler(ShippingmethodController.ShippmentNotFoundException.class)
-    public ResponseEntity<String> handleAddressControllerAddressNotFoundException(
+    public ResponseEntity<String> handleShippingmethodControllerAddressNotFoundException(
             ShippingmethodController.ShippmentNotFoundException element) {
         return ResponseEntity.status(404).body(element.getMessage());
     }
